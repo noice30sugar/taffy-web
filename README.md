@@ -46,6 +46,11 @@ the service-role key (never exposed here).
    the Cloudflare-managed DNS at it (CNAME per Vercel's instructions). DNS stays
    at Cloudflare per `docs/launch-setup.md`.
 
+## TODO before launch
+
+- [ ] **Swap the placeholder wordmark/logo.** The current `public/brand/taffy-wordmark-light.svg` + `lockup-light.svg` are placeholders. Drop the real logo files in `public/brand/` (same filenames) and it updates everywhere — **nav, footer, and the OG share card** (`app/opengraph-image.tsx`).
+- [ ] apple-touch-icon PNG (only the SVG favicon exists today).
+
 ## Assets
 
 - `public/brand/` — Taffy wordmark + bucket symbol + lockup SVGs (from

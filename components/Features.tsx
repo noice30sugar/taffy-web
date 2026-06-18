@@ -101,17 +101,12 @@ export default function Features() {
                   imageRight ? "lg:order-2 lg:justify-end" : "lg:order-1 lg:justify-start"
                 }`}
               >
-                <div className="relative">
-                  <div
-                    className={`glow ${f.pink ? "glow-pink" : "glow-gold"} left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2`}
-                  />
-                  <PhoneFrame
-                    src={f.src}
-                    alt={f.alt}
-                    width={290}
-                    className={`relative ${imageRight ? "rotate-[1.5deg]" : "-rotate-[1.5deg]"}`}
-                  />
-                </div>
+                <PhoneFrame
+                  src={f.src}
+                  alt={f.alt}
+                  width={290}
+                  className={imageRight ? "rotate-[1.5deg]" : "-rotate-[1.5deg]"}
+                />
               </div>
             </Reveal>
           );

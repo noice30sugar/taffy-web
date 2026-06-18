@@ -4,10 +4,6 @@ import WaitlistForm from "./WaitlistForm";
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden px-6 pt-36 pb-24 sm:pt-44">
-      {/* atmosphere */}
-      <div className="glow glow-gold left-1/2 top-0 h-[520px] w-[820px] -translate-x-1/2" />
-      <div className="glow glow-pink right-[8%] top-[40%] h-[260px] w-[260px]" />
-
       <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
         {/* copy */}
         <div className="flex flex-col items-start">
@@ -49,7 +45,7 @@ export default function Hero() {
             alt="Taffy inbox — swipe each transaction into a bucket"
             priority
             width={326}
-            className="rotate-[2deg]"
+            className="relative rotate-[2deg]"
           />
         </div>
       </div>

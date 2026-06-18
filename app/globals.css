@@ -60,20 +60,9 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* --- Gold glow utility (radial atmosphere behind hero / CTA) --- */
-.glow {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-}
-.glow-gold {
-  background: radial-gradient(circle, rgba(253, 190, 24, 0.22), transparent 70%);
-}
-.glow-pink {
-  background: radial-gradient(circle, rgba(250, 128, 164, 0.16), transparent 70%);
-}
+/* Background gold-accent atmosphere intentionally removed — pending a fresh
+   design pass on how to accent the dark background. Gold UI accents (buttons,
+   eyebrow, feature numerals, links) live in the components. */
 
 /* --- Scroll reveal --- */
 .reveal {
