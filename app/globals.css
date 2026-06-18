@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/*
+  Taffy brand tokens — source of truth: docs/brand.md (transorter repo).
+  Marketing surfaces are light/white with marketing gold as the lead accent
+  and signature pink as a sparing pop. Deep ink echoes the in-app dark feel.
+*/
+@theme {
+  /* Brand / marketing palette (brand.md §5, §9) */
+  --color-gold: #fdbe18; /* marketing gold — lead accent on white */
+  --color-pink: #fa80a4; /* signature pink — sparing pop */
+  --color-ink: #101014; /* deep app background — dark surfaces */
+  --color-cream: #f0ede8; /* app light background */
+  --color-card: #faf8f5; /* app light card surface */
+
+  /* Neutrals (app light text tokens) */
+  --color-ink-primary: #1c1c1e;
+  --color-ink-secondary: #6b6b70;
+
+  /* Typography */
+  --font-heading: var(--font-heading), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: var(--color-ink-primary);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
