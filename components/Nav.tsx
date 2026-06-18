@@ -24,12 +24,12 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#top" aria-label="Taffy home" className="flex items-center">
           <Image
-            src="/brand/taffy-wordmark-light.svg"
+            src="/brand/taffy-wordmark-hat.png"
             alt="Taffy"
-            width={92}
-            height={52}
+            width={1018}
+            height={403}
             priority
-            className="h-6 w-auto"
+            className="h-7 w-auto"
           />
         </a>
         <a

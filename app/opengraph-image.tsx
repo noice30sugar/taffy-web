@@ -6,15 +6,13 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Taffy — Bucket your spending.";
 
-// Social share card: brand lockup on deep ink with a gold glow. Renders only
-// vector (SVG) + shapes — no text nodes — so no font data is required and the
-// build never depends on the network.
+// Social share card: the wordmark (with hat) on deep ink. No standalone bucket
+// symbol. Renders only an image — no text nodes — so no font data is required.
 export default async function OpengraphImage() {
-  const svg = await readFile(
-    join(process.cwd(), "public/brand/lockup-light.svg"),
-    "utf-8",
+  const png = await readFile(
+    join(process.cwd(), "public/brand/taffy-wordmark-hat.png"),
   );
-  const lockup = `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+  const wordmark = `data:image/png;base64,${png.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -26,22 +24,10 @@ export default async function OpengraphImage() {
           alignItems: "center",
           justifyContent: "center",
           background: "#101014",
-          position: "relative",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: -160,
-            width: 900,
-            height: 700,
-            borderRadius: 9999,
-            background:
-              "radial-gradient(circle, rgba(253,190,24,0.30), transparent 70%)",
-          }}
-        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={lockup} width={300} height={318} alt="Taffy" />
+        <img src={wordmark} width={560} height={222} alt="Taffy" />
       </div>
     ),
     { ...size },

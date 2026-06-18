@@ -18,6 +18,48 @@
   --color-fg-dim: #9a9aa4; /* secondary text */
   --color-fg-faint: #6b6b73; /* tertiary text */
 
+  /* --- App-derived accents & surfaces (translated from iOS Theme.swift, dark variants) --- */
+  --color-ink-4: #222228; /* elevated surface (modals, popovers) */
+  --color-ink-grouped: #151518; /* grouped section background */
+  --color-sage: #8baa90; /* secondary accent — calm/growth */
+  --color-sage-deep: #5e8a66; /* muted sage */
+  --color-silver: #b8b8c4; /* neutral accent */
+
+  /* --- Semantic state colors (dark variants) --- */
+  --color-success: #8baa90;
+  --color-warning: #debb6a;
+  --color-remove: #d05555; /* destructive */
+  --color-error: #e06060;
+  --color-change-up: #ff6b6b; /* spending up = bad */
+  --color-change-down: #50dd80; /* spending down = good */
+
+  /* --- Category "bucket" palette (20 colors, dark variants from Theme.categoryColors) --- */
+  --color-cat-red: #ef4444;
+  --color-cat-vermillion: #f07030;
+  --color-cat-tangerine: #f89820;
+  --color-cat-amber: #f0b400;
+  --color-cat-gold: #cccc18;
+  --color-cat-chartreuse: #84cc16;
+  --color-cat-emerald: #22c55e;
+  --color-cat-jade: #14b8a6;
+  --color-cat-teal: #06b6d4;
+  --color-cat-sky: #0ea5e9;
+  --color-cat-blue: #3b82f6;
+  --color-cat-cobalt: #6366f1;
+  --color-cat-indigo: #8b5cf6;
+  --color-cat-violet: #a855f7;
+  --color-cat-purple: #d946ef;
+  --color-cat-magenta: #ec4899;
+  --color-cat-rose: #f43f5e;
+  --color-cat-coral: #f07050;
+  --color-cat-crimson: #e11d55;
+  --color-cat-rust: #d06030;
+
+  /* --- Elevation (translated from Theme.Shadow) --- */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.24);
+  --shadow-card: 0 3px 8px rgba(0, 0, 0, 0.32);
+  --shadow-elevated: 0 6px 16px rgba(0, 0, 0, 0.44);
+
   --font-heading: var(--font-heading), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;

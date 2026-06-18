@@ -7,11 +7,11 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col items-center sm:items-start">
           <Image
-            src="/brand/taffy-wordmark-light.svg"
+            src="/brand/taffy-wordmark-hat.png"
             alt="Taffy"
-            width={84}
-            height={48}
-            className="h-6 w-auto"
+            width={1018}
+            height={403}
+            className="h-7 w-auto"
           />
           <p className="mt-3 text-sm text-fg-faint">Bucket your spending.</p>
         </div>

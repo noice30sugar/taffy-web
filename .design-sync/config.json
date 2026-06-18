@@ -1,0 +1,17 @@
+{
+  "projectId": "04484cef-5f5b-4d54-af93-9a041e658168",
+  "pkg": "taffy-web",
+  "globalName": "Taffy",
+  "shape": "package",
+  "srcDir": "components/ui",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": ".design-sync/.cache/styles-compiled.css",
+  "componentSrcMap": {
+    "Button": "components/ui/Button.tsx",
+    "Card": "components/ui/Card.tsx",
+    "Badge": "components/ui/Badge.tsx",
+    "SectionHeading": "components/ui/SectionHeading.tsx",
+    "Stat": "components/ui/Stat.tsx",
+    "Input": "components/ui/Input.tsx"
+  }
+}
