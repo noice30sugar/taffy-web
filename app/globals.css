@@ -1,36 +1,39 @@
 @import "tailwindcss";
 
 /*
-  Taffy brand tokens — source of truth: docs/brand.md (transorter repo).
-  Marketing surfaces are light/white with marketing gold as the lead accent
-  and signature pink as a sparing pop. Deep ink echoes the in-app dark feel.
+  Taffy landing — dark, premium-first (docs/brand.md).
+  Deep ink surfaces, marketing gold as lead accent, signature pink as a sparing
+  pop. Atmosphere (gold glow + grain), motion (staggered scroll reveal), and
+  composition carry the distinctiveness; type stays on-brand (Jakarta / DM Sans).
 */
 @theme {
-  /* Brand / marketing palette (brand.md §5, §9) */
-  --color-gold: #fdbe18; /* marketing gold — lead accent on white */
+  --color-gold: #fdbe18; /* marketing gold — lead accent */
+  --color-gold-deep: #cba842; /* muted gold (app accent) — subtle fills */
   --color-pink: #fa80a4; /* signature pink — sparing pop */
-  --color-ink: #101014; /* deep app background — dark surfaces */
-  --color-cream: #f0ede8; /* app light background */
-  --color-card: #faf8f5; /* app light card surface */
+  --color-ink: #101014; /* deep app background */
+  --color-ink-2: #16161c; /* raised surface */
+  --color-ink-3: #1b1b22; /* card / phone frame */
+  --color-line: rgba(255, 255, 255, 0.08); /* hairline */
+  --color-fg: #eeeef0; /* primary text */
+  --color-fg-dim: #9a9aa4; /* secondary text */
+  --color-fg-faint: #6b6b73; /* tertiary text */
 
-  /* Neutrals (app light text tokens) */
-  --color-ink-primary: #1c1c1e;
-  --color-ink-secondary: #6b6b70;
-
-  /* Typography */
   --font-heading: var(--font-heading), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: var(--color-ink-primary);
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-ink);
+  color: var(--color-fg);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1,
@@ -38,4 +41,99 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* --- Atmosphere: fixed grain overlay over the whole page --- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Gold glow utility (radial atmosphere behind hero / CTA) --- */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-gold {
+  background: radial-gradient(circle, rgba(253, 190, 24, 0.22), transparent 70%);
+}
+.glow-pink {
+  background: radial-gradient(circle, rgba(250, 128, 164, 0.16), transparent 70%);
+}
+
+/* --- Scroll reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* --- Hero load-in stagger --- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* --- Phone frame: dark chrome around app screenshots --- */
+.phone {
+  border-radius: 2.75rem;
+  padding: 0.5rem;
+  background: linear-gradient(160deg, #26262e, #0d0d11);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 30px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+}
+.phone img {
+  border-radius: 2.25rem;
+  display: block;
 }
