@@ -6,6 +6,7 @@
   "srcDir": "components/ui",
   "tsconfig": "tsconfig.json",
   "cssEntry": ".design-sync/.cache/styles-compiled.css",
+  "guidelinesGlob": ["design-reference/visual-reference.md"],
   "componentSrcMap": {
     "Button": "components/ui/Button.tsx",
     "Card": "components/ui/Card.tsx",
