@@ -13,5 +13,13 @@
     "SectionHeading": "components/ui/SectionHeading.tsx",
     "Stat": "components/ui/Stat.tsx",
     "Input": "components/ui/Input.tsx"
+  },
+  "dtsPropsFor": {
+    "Button": "/** Visual emphasis. @default \"primary\" */\n  variant?: \"primary\" | \"secondary\" | \"ghost\";\n  /** Control height + padding. @default \"md\" */\n  size?: \"sm\" | \"md\" | \"lg\";\n  children: React.ReactNode;\n  className?: string;\n  disabled?: boolean;\n  type?: \"button\" | \"submit\" | \"reset\";\n  onClick?: React.MouseEventHandler<HTMLButtonElement>;",
+    "Card": "/** Render the app's signature corner-bracket accents (gold L-marks). @default false */\n  cornerAccent?: boolean;\n  /** Elevation surface. @default \"card\" */\n  surface?: \"card\" | \"elevated\" | \"grouped\";\n  className?: string;\n  children: React.ReactNode;",
+    "Badge": "/** Accent family. Ignored when `color` is set. @default \"gold\" */\n  tone?: \"gold\" | \"sage\" | \"silver\" | \"neutral\";\n  /** Override with a raw category-bucket color (hex or CSS var, e.g. var(--color-cat-emerald)) for the app's category pills. */\n  color?: string;\n  /** Leading status dot in the current text color. @default false */\n  dot?: boolean;\n  className?: string;\n  children: React.ReactNode;",
+    "SectionHeading": "/** Small uppercase label above the title (rendered as a gold Badge). */\n  eyebrow?: string;\n  title: React.ReactNode;\n  /** Supporting paragraph below the title. */\n  subtitle?: React.ReactNode;\n  /** @default \"left\" */\n  align?: \"left\" | \"center\";\n  className?: string;",
+    "Stat": "/** Caption above the figure. */\n  label?: React.ReactNode;\n  /** The headline figure — rendered with mono, tabular digits. */\n  value: React.ReactNode;\n  /** Optional delta. direction \"up\" = spending rose (red); \"down\" = spending fell (green). */\n  delta?: { direction: \"up\" | \"down\"; value: React.ReactNode };\n  className?: string;",
+    "Input": "/** Render in the error state (pink ring). @default false */\n  invalid?: boolean;\n  type?: string;\n  placeholder?: string;\n  value?: string;\n  defaultValue?: string;\n  onChange?: React.ChangeEventHandler<HTMLInputElement>;\n  className?: string;\n  \"aria-label\"?: string;"
   }
 }
