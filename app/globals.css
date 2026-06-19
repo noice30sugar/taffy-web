@@ -153,6 +153,54 @@ body::after {
   }
 }
 
+/* --- Legal pages: long-form prose (no typography plugin) --- */
+.legal {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-fg-dim);
+}
+.legal h2 {
+  font-size: 1.25rem;
+  color: var(--color-fg);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.legal h3 {
+  font-size: 1.05rem;
+  color: var(--color-fg);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.legal p {
+  margin-bottom: 1rem;
+}
+.legal ul {
+  margin: 0 0 1rem 1.25rem;
+  list-style-type: disc;
+}
+.legal li {
+  margin-bottom: 0.4rem;
+}
+.legal strong {
+  color: var(--color-fg);
+  font-weight: 600;
+}
+.legal a {
+  color: var(--color-gold);
+  word-break: break-word;
+}
+.legal a:hover {
+  text-decoration: underline;
+}
+.legal hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 2.5rem 0;
+}
+.legal .lead {
+  color: var(--color-fg);
+}
+
 /* --- Phone frame: dark chrome around app screenshots --- */
 .phone {
   border-radius: 2.75rem;
