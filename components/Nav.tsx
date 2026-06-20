@@ -33,10 +33,10 @@ export default function Nav() {
           />
         </a>
         <a
-          href="#join"
+          href="#download"
           className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink transition hover:brightness-105 active:scale-[0.98]"
         >
-          Join the waitlist
+          Get the app
         </a>
       </nav>
     </header>
