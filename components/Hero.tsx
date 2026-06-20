@@ -34,7 +34,7 @@ export default function Hero() {
             style={{ ["--rise-delay" as string]: "160ms", fontSize: "1.14rem", lineHeight: 1.62 }}
           >
             You don&rsquo;t want a budget. You want to see where your money goes.
-            Taffy turns the chore into a swipe — connect your bank, flick each
+            Taffy turns the chore into a tap — connect your bank, tap each
             transaction into a bucket, done.
           </p>
 
@@ -55,7 +55,7 @@ export default function Hero() {
             className="rise mt-4 text-[0.85rem] text-fg-faint"
             style={{ ["--rise-delay" as string]: "300ms" }}
           >
-            Early access · Connect any Canadian bank securely via Plaid
+            Early access · Connect any Canadian or US bank securely via Plaid
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function Hero() {
           <div className="relative" style={{ transform: "rotate(2deg)" }}>
             <PhoneFrame
               src="/screens/inbox-deck.png"
-              alt="Taffy inbox — swipe each transaction into a bucket"
+              alt="Taffy inbox — tap each transaction into a bucket"
               priority
               width={312}
               className="relative z-[1]"
