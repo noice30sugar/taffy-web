@@ -157,6 +157,7 @@ export default function DeckSort() {
   const [n, setN] = useState(0); // cards sorted this round (0..N)
   const [phase, setPhase] = useState<Phase>("idle");
   const [comp, setComp] = useState<Comp>("none");
+  const [checkIn, setCheckIn] = useState(false); // sage ✓ — revealed as the sweep completes
   const [doneCount, setDoneCount] = useState(0); // edge-trigger for completion
   const [reduced, setReduced] = useState(false);
 
@@ -173,22 +174,33 @@ export default function DeckSort() {
 
   // Completion choreography. Depends ONLY on doneCount so the intermediate comp/n
   // updates below never tear this timeline down mid-flight.
-  //   clear  — last card has flown off an already-empty deck; sage ✓ pops in
+  //   clear  — last card has flown off an already-empty deck (no ✓ yet)
   //   sweep  — green capsule fills the full bar L→R (the "you cleared it" payoff)
+  //   ✓ reveal — the sage check pops in exactly as the sweep reaches 100%, so the
+  //            bar filling and the check landing read as one beat
   //   refill — ✓ fades; blank cards reshuffle in R→L, then the top card's text
   //            fades on; both bars drain
   //   none   — fresh round resumes
   useEffect(() => {
     if (doneCount === 0 || reduced) return;
+    const SWEEP_DELAY = 240; // let the deck finish clearing before the bar fills
+    const SWEEP_MS = 1100; // matches .ds-prog-sweep width transition
+    const HOLD = 720; // savor the full bar + check together
     setComp("clear");
-    const t2 = setTimeout(() => setComp("sweep"), 480);
-    const t3 = setTimeout(() => setComp("refill"), 1780);
+    const t1 = setTimeout(() => setComp("sweep"), SWEEP_DELAY);
+    // Check lands as the sweep completes — the two greens resolve in sync.
+    const tc = setTimeout(() => setCheckIn(true), SWEEP_DELAY + SWEEP_MS);
+    const t3 = setTimeout(() => {
+      setCheckIn(false);
+      setComp("refill");
+    }, SWEEP_DELAY + SWEEP_MS + HOLD);
     const t4 = setTimeout(() => {
       setComp("none");
       setN(0);
-    }, 3200);
+    }, SWEEP_DELAY + SWEEP_MS + HOLD + 1420);
     return () => {
-      clearTimeout(t2);
+      clearTimeout(t1);
+      clearTimeout(tc);
       clearTimeout(t3);
       clearTimeout(t4);
     };
@@ -254,7 +266,7 @@ export default function DeckSort() {
   const cardStyle: React.CSSProperties | undefined = stamped ? { borderColor: cat.color } : undefined;
 
   return (
-    <div className="ds-stage" data-deck={deckState} aria-hidden>
+    <div className="ds-stage" data-deck={deckState} data-check={checkIn ? "in" : "out"} aria-hidden>
       {/* progress bar: gold fills, green sweeps on completion, then both drain */}
       <div className="ds-prog">
         <div className="ds-prog-track">
@@ -269,7 +281,7 @@ export default function DeckSort() {
         </div>
         <p className="ds-prog-label">
           {done ? (
-            <b style={{ color: "#8baa90" }}>All sorted!</b>
+            <b style={{ color: "#9ad0a0" }}>All sorted!</b>
           ) : (
             <>
               <b>{remaining}</b> transaction{remaining === 1 ? "" : "s"} to sort
