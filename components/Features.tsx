@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 import SectionHeading from "./ui/SectionHeading";
 
-type Crop = { src: string; alt: string; w: number; h: number };
 type Feature = {
   eyebrow: string;
   title: string;
@@ -10,9 +12,8 @@ type Feature = {
   src: string;
   alt: string;
   glow: string;
-  reversed?: boolean;
-  /** Feature 03: dashboard phone with two floating cropped cards. */
-  orbit?: { phoneW: number; phoneH: number; crops: Crop[] };
+  /** Bucket-palette color for this step's tick + eyebrow accent. */
+  tick: string;
 };
 
 const FEATURES: Feature[] = [
@@ -23,6 +24,7 @@ const FEATURES: Feature[] = [
     src: "/screens/accounts-plaid.png",
     alt: "Taffy — your connected bank accounts and balances",
     glow: "radial-gradient(circle, rgba(253,190,24,.32), transparent 70%)",
+    tick: "var(--color-gold)",
   },
   {
     eyebrow: "02 · Sort",
@@ -31,33 +33,16 @@ const FEATURES: Feature[] = [
     src: "/screens/inbox-deck.png",
     alt: "Taffy — tap each transaction into a bucket",
     glow: "radial-gradient(circle, rgba(240,160,32,.32), transparent 70%)",
-    reversed: true,
+    tick: "var(--color-cat-tangerine)",
   },
   {
     eyebrow: "03 · See",
     title: "Where your money actually went.",
-    text: "A live gauge totals the month, the donut splits it into buckets, and every category is measured against the month before — the whole story, no scrolling.",
-    src: "/screens/dashboard-gauge.png",
-    alt: "Taffy dashboard — the monthly spending gauge and total",
-    glow: "radial-gradient(circle, rgba(247,222,150,.32), transparent 70%)",
-    orbit: {
-      phoneW: 368,
-      phoneH: 800,
-      crops: [
-        {
-          src: "/screens/breakdown-crop.png",
-          alt: "Taffy — spending by category this month",
-          w: 344,
-          h: 542,
-        },
-        {
-          src: "/screens/compare-crop.png",
-          alt: "Taffy — every category compared against last month",
-          w: 344,
-          h: 445,
-        },
-      ],
-    },
+    text: "Every category sized by what you spent, and measured against last month — up or down, at a glance. The whole story on one screen, no scrolling.",
+    src: "/screens/dashboard-overview-v4.png",
+    alt: "Taffy dashboard — total spent on a gauge, spending by category, and every category vs last month",
+    glow: "radial-gradient(circle, rgba(240,112,80,.32), transparent 70%)",
+    tick: "var(--color-cat-coral)",
   },
   {
     eyebrow: "04 · Track",
@@ -65,12 +50,34 @@ const FEATURES: Feature[] = [
     text: "Zoom from this week to this year to all-time. See month-to-month breakdowns and spending charts, with your top merchants and totals always in view.",
     src: "/screens/lifetime-trend.png",
     alt: "Taffy — lifetime spending, a merchant's trend, and top merchants",
-    glow: "radial-gradient(circle, rgba(253,190,24,.3), transparent 70%)",
-    reversed: true,
+    glow: "radial-gradient(circle, rgba(250,128,164,.3), transparent 70%)",
+    tick: "var(--color-pink)",
   },
 ];
 
 export default function Features() {
+  const [active, setActive] = useState(0);
+  const stepRefs = useRef<(HTMLElement | null)[]>([]);
+
+  // Which step crosses screen-center is the active one. A centered IO band
+  // (top/bottom 45% trimmed) means only the block over the middle counts —
+  // JS just picks the index; the screen crossfade itself is pure CSS.
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = Number((entry.target as HTMLElement).dataset.idx);
+            setActive(idx);
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+    for (const el of stepRefs.current) if (el) obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section id="how" className="scroll-mt-[90px] px-6 pt-16 pb-9">
       <Reveal className="relative mx-auto mb-[70px] max-w-[720px]">
@@ -82,50 +89,72 @@ export default function Features() {
         />
       </Reveal>
 
-      <div className="tf-feat">
-        {FEATURES.map((f) => (
-          <Reveal key={f.eyebrow}>
-            <div className={`tf-feat-row ${f.reversed ? "rev" : ""}`}>
-              <div className={`tf-feat-shot ${f.orbit ? "tf-orbit" : ""}`}>
-                <span className="tf-feat-glow" style={{ background: f.glow }} />
-                {f.orbit ? (
-                  <>
-                    <div className="tf-orbit-phone">
-                      <Image
-                        src={f.src}
-                        alt={f.alt}
-                        width={f.orbit.phoneW}
-                        height={f.orbit.phoneH}
-                        sizes="224px"
-                      />
-                    </div>
-                    {f.orbit.crops.map((c, i) => (
-                      <figure key={c.src} className={`tf-crop tf-crop-${i === 0 ? "a" : "b"}`}>
-                        <Image src={c.src} alt={c.alt} width={c.w} height={c.h} sizes="300px" />
-                      </figure>
-                    ))}
-                  </>
-                ) : (
-                  <div className="tf-feat-phone">
-                    <Image
-                      src={f.src}
-                      alt={f.alt}
-                      width={1206}
-                      height={2622}
-                      sizes="300px"
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="tf-feat-copy">
-                <span className="tf-feat-eyebrow">{f.eyebrow}</span>
-                <h3 className="tf-feat-title">{f.title}</h3>
-                <p className="tf-feat-text">{f.text}</p>
-              </div>
+      <div className="tour">
+        {/* Pinned stage: phone holds all four screens stacked; the active one
+            crossfades in. Tick rail tracks progress. Hidden on mobile. */}
+        <div className="tour-stage" aria-hidden="true">
+          <ol className="tour-ticks">
+            {FEATURES.map((f, i) => (
+              <li
+                key={f.eyebrow}
+                className={`tour-tick ${i === active ? "on" : ""}`}
+                style={{ ["--tick" as string]: f.tick }}
+              />
+            ))}
+          </ol>
+          <div className="tour-phone">
+            <span
+              className="tour-glow"
+              style={{ background: FEATURES[active].glow }}
+            />
+            <div className="tour-screens">
+              {FEATURES.map((f, i) => (
+                <Image
+                  key={f.src}
+                  className={`tour-screen ${i === active ? "on" : ""}`}
+                  src={f.src}
+                  alt=""
+                  fill
+                  sizes="300px"
+                  priority={i === 0}
+                />
+              ))}
             </div>
-          </Reveal>
-        ))}
+          </div>
+        </div>
+
+        {/* Scrolling copy. Each step is ~90vh so the stage stays pinned across
+            the whole section; the active one lights up, the rest dim. */}
+        <div className="tour-steps">
+          {FEATURES.map((f, i) => (
+            <article
+              key={f.eyebrow}
+              ref={(el) => {
+                stepRefs.current[i] = el;
+              }}
+              data-idx={i}
+              className={`tour-step ${i === active ? "on" : ""}`}
+            >
+              {/* Mobile-only inline phone — the pinned stage is hidden < 820px. */}
+              <div className="tour-step-shot">
+                <span className="tour-glow" style={{ background: f.glow }} />
+                <Image
+                  src={f.src}
+                  alt={f.alt}
+                  width={1206}
+                  height={2622}
+                  sizes="300px"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+              <span className="tour-step-eyebrow" style={{ color: f.tick }}>
+                {f.eyebrow}
+              </span>
+              <h3 className="tour-step-title">{f.title}</h3>
+              <p className="tour-step-text">{f.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
