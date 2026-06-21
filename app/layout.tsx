@@ -1,16 +1,32 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
+import { Newsreader, Schibsted_Grotesk, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-// Brand typography (docs/brand.md §6): Plus Jakarta Sans headings, DM Sans body.
-const jakarta = Plus_Jakarta_Sans({
+// Brand typography (Gold v3 redesign): editorial serif headings (Newsreader) +
+// Schibsted Grotesk body. Plus Jakarta Sans + DM Sans are retained for the
+// in-app transaction-card UI mirrored on the page, so the cards match the app.
+const newsreader = Newsreader({
   variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+});
+
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+// App-card UI fonts (match the iOS Theme: Plus Jakarta Sans + DM Sans).
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-card",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
 });
 
 const dmSans = DM_Sans({
-  variable: "--font-body",
+  variable: "--font-card-meta",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
@@ -46,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${schibsted.variable} ${jakarta.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

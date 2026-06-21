@@ -24,6 +24,57 @@ export default function KitPage() {
       />
 
       <div className="mt-16 flex flex-col gap-14">
+        {/* Typography */}
+        <section className="flex flex-col gap-5">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-fg-faint">
+            Typography (Gold v3)
+          </h3>
+          <Card className="flex flex-col gap-7">
+            <div>
+              <p className="mb-2 text-xs uppercase tracking-[0.16em] text-fg-faint">
+                Headings · Newsreader (editorial serif) ·{" "}
+                <code className="text-fg-dim">--font-heading</code>
+              </p>
+              <p
+                className="text-fg"
+                style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "2.6rem", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+              >
+                Bucket your{" "}
+                <span style={{ fontStyle: "italic", fontWeight: 600, color: "var(--color-gold)" }}>
+                  spending.
+                </span>
+              </p>
+              <p className="mt-1 text-sm text-fg-faint">
+                Weights 600/700 + italic. Gold italic accent for emphasis words.
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-2 text-xs uppercase tracking-[0.16em] text-fg-faint">
+                Body / UI · Schibsted Grotesk · <code className="text-fg-dim">--font-body</code>
+              </p>
+              <p className="max-w-prose text-fg-dim" style={{ fontFamily: "var(--font-body)", fontSize: "1.1rem", lineHeight: 1.6 }}>
+                You don&rsquo;t want a budget. You want to see where your money goes — a
+                deck of transactions, one tap each, sorted.
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-2 text-xs uppercase tracking-[0.16em] text-fg-faint">
+                App-card UI · Plus Jakarta Sans + DM Sans ·{" "}
+                <code className="text-fg-dim">--font-card</code> /{" "}
+                <code className="text-fg-dim">--font-card-meta</code>
+              </p>
+              <p className="text-fg" style={{ fontFamily: "var(--font-card)", fontWeight: 800, fontSize: "1.6rem" }}>
+                Rabba Foods
+              </p>
+              <p className="text-fg-faint" style={{ fontFamily: "var(--font-card-meta)", fontSize: "0.95rem" }}>
+                Jun 12, 2026 — mirrors the iOS transaction card so the hero deck matches the app.
+              </p>
+            </div>
+          </Card>
+        </section>
+
         {/* Buttons */}
         <section className="flex flex-col gap-5">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-fg-faint">Buttons</h3>

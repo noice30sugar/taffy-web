@@ -47,11 +47,14 @@ Indigo `#8B5CF6`, Rose `#F43F5E`. Use these for category tags/pills.
 
 ---
 
-## Typography
+## Typography (Gold v3 — 2026-06-20)
 
-- **Headings:** Plus Jakarta Sans (600/700/800), tight tracking (`-0.02em`).
-- **Body:** DM Sans (400/500).
-- **Financial figures:** monospaced, **tabular** digits (alignment matters for money).
+- **Headings:** **Newsreader** (editorial serif), weights 600/700 + italic, tight tracking (`-0.02em`). Token: `--font-heading`. Use a **gold italic** accent on the emphasis word (e.g. "Bucket your *spending.*").
+- **Body / UI:** **Schibsted Grotesk** (400/500/600/700). Token: `--font-body`. Keep it at body/UI sizes — let the serif own the display scale.
+- **App-card UI:** **Plus Jakarta Sans** (merchant/amount) + **DM Sans** (date), tokens `--font-card` / `--font-card-meta`. These intentionally mirror the iOS `Theme` so the hero's transaction deck matches the real app card (`#1B1B20` surface, `#7891B4` deck-edge border).
+- **Financial figures:** **tabular** digits (`font-variant-numeric: tabular-nums`) — alignment matters for money.
+
+> Pre-v3 (deprecated): headings were Plus Jakarta Sans, body DM Sans. The redesign moved to an editorial serif lead (warm-premium, "Cred craft without the coldness") while the raven/bucket-hat carries the warmth.
 
 ---
 

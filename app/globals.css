@@ -60,9 +60,16 @@
   --shadow-card: 0 3px 8px rgba(0, 0, 0, 0.32);
   --shadow-elevated: 0 6px 16px rgba(0, 0, 0, 0.44);
 
-  --font-heading: var(--font-heading), "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
+  --font-heading: var(--font-heading), "Newsreader", Georgia, serif;
+  --font-body: var(--font-body), "Schibsted Grotesk", system-ui, sans-serif;
+  /* App-card UI fonts — mirror the iOS transaction card */
+  --font-card: var(--font-card), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-card-meta: var(--font-card-meta), "DM Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+
+  /* App-derived deck/card tokens (from iOS Theme) */
+  --color-card-surface: #1b1b20;
+  --color-deck-edge: #7891b4;
 }
 
 html {
@@ -411,5 +418,544 @@ body::after {
   }
   .tf-crop {
     width: 300px;
+  }
+}
+
+/* ============================================================
+   Hero (Gold v3) — editorial headline + app-faithful deck-sort
+   ============================================================ */
+.hero-deck {
+  position: relative;
+  overflow: hidden;
+  padding: 0 24px;
+}
+.hero-deck::before {
+  content: "";
+  position: absolute;
+  top: -12%;
+  right: -4%;
+  width: 74%;
+  height: 80%;
+  background: radial-gradient(circle at 58% 40%, rgba(253, 190, 24, 0.15), transparent 60%);
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-deck-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: 30px;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 120px 32px 64px;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(253, 190, 24, 0.3);
+  background: rgba(253, 190, 24, 0.1);
+  color: var(--color-gold);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 13px;
+  border-radius: 999px;
+  margin-bottom: 40px;
+}
+.hero-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold);
+}
+.hero-h1 {
+  position: relative;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-fg);
+  margin-bottom: 22px;
+}
+.hero-h1 .it {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+/* Bucket-hat resting on the "B" corner */
+.hero-bwrap {
+  position: relative;
+  display: inline-block;
+}
+.hero-bhat {
+  position: absolute;
+  width: 50px;
+  height: auto;
+  top: -7px;
+  left: -54px;
+  transform: scaleX(-1) rotate(33deg);
+  transform-origin: bottom right;
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.45));
+  z-index: 3;
+}
+.hero-sub {
+  font-size: 1.16rem;
+  line-height: 1.6;
+  color: var(--color-fg-dim);
+  max-width: 29rem;
+  margin-bottom: 32px;
+}
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-gold);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 15px 24px;
+  border-radius: 16px;
+  transition: filter 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-cta:hover {
+  filter: brightness(1.05);
+}
+.hero-cta:active {
+  transform: scale(0.98);
+}
+.hero-cta .ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.13);
+  font-size: 15px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-cta:hover .ic {
+  transform: translate(2px, -1px) scale(1.05);
+}
+.hero-ghost {
+  border: 1px solid var(--color-line);
+  color: var(--color-fg);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 15px 22px;
+  border-radius: 16px;
+  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-ghost:hover {
+  background: var(--color-ink-2);
+}
+.hero-ghost:active {
+  transform: scale(0.98);
+}
+.hero-fine {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: var(--color-fg-faint);
+}
+
+/* --- Deck-sort animated visual --- */
+.ds-stage {
+  position: relative;
+  height: 348px;
+  width: 100%;
+}
+.ds-deck,
+.ds-next,
+.ds-active {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  width: 320px;
+  height: 190px;
+}
+/* The next card sits in its FINAL resting position directly beneath the hero
+   (app: "Static deck — never moves"). It is revealed in place as the hero flies
+   off; no entry/settle animation — nothing travels toward the deck. */
+.ds-next {
+  z-index: 2;
+}
+/* Outer = positioning only (and mobile centering). Inner (.ds-active-fly) owns
+   the 3D fling, so centering and the animated transform never fight. */
+.ds-active {
+  z-index: 3;
+}
+.ds-active-fly {
+  width: 320px;
+  height: 190px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+  transform: perspective(1100px) translate3d(0, 0, 0) rotateY(0deg) rotateZ(0deg) scale(1);
+  /* Exit = a flick that carries the card fully off-screen (100vw), opaque the
+     whole way — no fade. The deceleration tail lands off-screen, so it never
+     visibly slows in view. */
+  transition:
+    transform 0.6s cubic-bezier(0.33, 0, 0.15, 1),
+    filter 0.4s ease-out;
+}
+.ds-active-fly.is-exit {
+  transform: perspective(1100px) translate3d(100vw, var(--fly-y), 60px) rotateY(var(--fly-ry))
+    rotateZ(var(--fly-rz)) scale(var(--fly-s));
+  filter: blur(2.5px);
+}
+/* colored glow left behind at the origin as the card flies out */
+.ds-deck {
+  z-index: 1;
+}
+/* Confined to the card footprint (never reaches the deck-edge peek region, so
+   the semi-transparent deck lines don't pick up a colored tint). */
+/* Afterglow bloom over the revealed card as the hero flies out. Sits above the
+   next card but is confined to the card footprint (never over the deck edges). */
+.ds-flash {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  width: 320px;
+  height: 150px;
+  border-radius: 24px;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  filter: blur(20px);
+  transform: scale(0.92);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+.ds-flash.show {
+  opacity: 0.4;
+  transform: scale(1.03);
+}
+.ds-card {
+  position: relative;
+  width: 320px;
+  height: 190px;
+  border-radius: 18px;
+  background: var(--color-card-surface);
+  border: 2px solid var(--color-deck-edge);
+  box-shadow:
+    0 12px 28px -8px rgba(0, 0, 0, 0.6),
+    0 30px 60px -24px rgba(0, 0, 0, 0.85);
+  padding: 26px 28px;
+  transition:
+    border-color 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+/* The deep ground shadow above lives on the STATIC stack (the next card), so the
+   deck-edge peek below is shadowed by something that never moves. The MOVING hero
+   gets a tight, footprint-contained shadow that never reaches the peek band — a
+   deep shadow carried by the sliding hero pulses the deck lines ±30% per sort
+   (the "dimming"): bright while it's off, dark when a new card slams on. */
+.ds-active .ds-card {
+  box-shadow: 0 4px 14px -10px rgba(0, 0, 0, 0.5);
+}
+.ds-merch {
+  font-family: var(--font-card);
+  font-weight: 800;
+  font-size: 33px;
+  letter-spacing: -0.01em;
+  color: var(--color-fg);
+  line-height: 1.05;
+}
+.ds-foot {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.ds-date {
+  font-family: var(--font-card-meta);
+  font-size: 15px;
+  color: var(--color-fg-faint);
+}
+.ds-amt {
+  font-family: var(--font-card);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-fg);
+  font-variant-numeric: tabular-nums;
+}
+.ds-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  pointer-events: none;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.22s ease;
+}
+.ds-stamp.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.ds-stamp svg {
+  width: 16px;
+  height: 16px;
+}
+.ds-badge {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #26262e;
+  border: 1px solid var(--color-line);
+  color: var(--color-fg-dim);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.7);
+}
+/* Deck edges are fully OPAQUE (the fade is baked into the border color, not
+   element opacity) so nothing behind them — glow, background mesh — can bleed
+   through and tint the lines. This is what killed the intermittent dimming. */
+.ds-edge {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 190px;
+  border-radius: 18px;
+  background: var(--color-card-surface);
+  border: 1.5px solid var(--color-deck-edge);
+}
+.ds-edge.k1 {
+  width: 314px;
+  transform: translateX(-50%) translateY(10px);
+  border-color: #7891b4;
+}
+.ds-edge.k2 {
+  width: 307px;
+  transform: translateX(-50%) translateY(20px);
+  border-color: #5e718c;
+}
+.ds-edge.k3 {
+  width: 301px;
+  transform: translateX(-50%) translateY(30px);
+  border-color: #445064;
+}
+.ds-edge.k4 {
+  width: 294px;
+  transform: translateX(-50%) translateY(40px);
+  border-color: #2d3441;
+}
+/* Progress bar (mirrors the app's TriageProgressBar): fills as cards sort,
+   then drains to restart the loop. */
+.ds-prog {
+  position: absolute;
+  top: 288px;
+  left: 24px;
+  width: 320px;
+  z-index: 4;
+}
+.ds-prog-track {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(154, 154, 164, 0.4);
+  overflow: hidden;
+}
+.ds-prog-fill {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: var(--color-gold);
+  box-shadow: 0 0 6px rgba(253, 190, 24, 0.45);
+  transition: width 0.45s ease-out;
+}
+/* completion: a green capsule sweeps left→right over the full bar, then drains */
+.ds-prog-sweep {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: #8baa90; /* app Theme.success (sage) */
+  box-shadow: 0 0 8px rgba(139, 170, 144, 0.6);
+  transition: width 1.1s ease-out;
+}
+.ds-prog-label {
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-fg-faint);
+}
+.ds-prog-label b {
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+/* Decklines fade out one-by-one as the stack shrinks (opacity driven per-count
+   in JS); by the last card none remain, so the hero sits over an empty deck. */
+.ds-edge {
+  transition: opacity 0.4s ease;
+}
+
+/* Reshuffle deal (refill): blank cards slide in R→L, deepest first, each
+   overlaying the last and adding a deckline. The depth transform (translateY +
+   scaleX) lives on the slot; the slide + fade is a keyframe on the card so the
+   two don't fight. Resting depths match the .ds-edge k1–k4 stack. */
+.ds-reshuffle {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  width: 320px;
+  height: 190px;
+  z-index: 3;
+}
+.ds-deal-slot {
+  position: absolute;
+  inset: 0;
+  transform-origin: center top;
+}
+.ds-deal-slot .ds-card {
+  width: 320px;
+  height: 190px;
+  /* Back dealt cards BECOME the .ds-edge decklines, so match them exactly —
+     1.5px border, no shadow — or the decklines jump (stroke weight + shadow) at
+     the reshuffle→play handoff. */
+  border-width: 1.5px;
+  box-shadow: none;
+  animation: ds-deal-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* The top dealt card is the hero — restore the 2px border + deep ground shadow
+   so it matches the play hero (and the static next card whose shadow darkens the
+   decklines identically). Placed after the rule above to win on equal specificity. */
+.ds-deal-slot .ds-reveal-text {
+  border-width: 2px;
+  box-shadow:
+    0 12px 28px -8px rgba(0, 0, 0, 0.6),
+    0 30px 60px -24px rgba(0, 0, 0, 0.85);
+}
+@keyframes ds-deal-in {
+  from {
+    opacity: 0;
+    transform: translateX(460px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* the final (top) card's text fades back on once it has landed */
+.ds-reveal-text .ds-merch,
+.ds-reveal-text .ds-foot {
+  animation: ds-text-fade 0.4s ease both;
+  animation-delay: 0.86s;
+}
+@keyframes ds-text-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Empty-deck payoff: a sage check that scales in (never from 0) while the deck
+   sits cleared and the green bar sweeps. */
+.ds-empty {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  width: 320px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ds-stage[data-deck="empty"] .ds-empty {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.18s; /* let the deck clear first */
+}
+.ds-empty-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  color: #fff;
+  background: #8baa90; /* app Theme.success (sage) */
+  box-shadow:
+    0 8px 22px -6px rgba(139, 170, 144, 0.6),
+    0 0 0 8px rgba(139, 170, 144, 0.12);
+}
+.ds-empty-check svg {
+  width: 30px;
+  height: 30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-active-fly,
+  .ds-stamp {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-deck-inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .ds-stage {
+    height: 300px;
+  }
+  .ds-deck,
+  .ds-active {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
