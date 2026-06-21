@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 // Owned by the "Real legal + App Store URLs" roadmap task.
 export default function Privacy() {
   return (
-    <LegalLayout title="Privacy Policy" updated="June 18, 2026">
+    <LegalLayout title="Privacy Policy" updated="June 21, 2026">
       <p className="lead">
         This Privacy Policy describes how <strong>Terris Zhu</strong> (&ldquo;we,&rdquo;
         &ldquo;us,&rdquo; or &ldquo;our&rdquo;) accesses, collects, stores, uses,
@@ -210,6 +210,22 @@ export default function Privacy() {
         <strong>Settings → Delete Account</strong>. To exercise any other right,
         contact us at{" "}
         <a href="mailto:support@taffybuckets.com">support@taffybuckets.com</a>.
+      </p>
+
+      <h3>United States &amp; California residents</h3>
+      <p>
+        If you are a resident of the United States, including California, you
+        have the right to know what personal information we collect (described in
+        Section 1), to access or delete it, and to not be discriminated against
+        for exercising these rights.{" "}
+        <strong>
+          We do not sell or share your personal information, and we do not use it
+          for cross-context behavioral advertising.
+        </strong>{" "}
+        You can delete your account and all of its data at any time from{" "}
+        <strong>Settings → Delete Account</strong>, or contact us at{" "}
+        <a href="mailto:support@taffybuckets.com">support@taffybuckets.com</a> to
+        exercise any of these rights.
       </p>
 
       <h2>9. Controls for Do-Not-Track features</h2>
