@@ -6,12 +6,12 @@ export const metadata: Metadata = {
 };
 
 // Terms of Service. Drafted from the codebase-verified spec in the Transorter
-// repo (docs/launch-setup.md §C1). Owned by the "Real legal + App Store URLs"
-// roadmap task. NOTE: the "no paid products" / no-payments clauses must be
-// revisited when the subscription wiring lands — see docs/plans/2026-06-13-payments.md §3.
+// repo (docs/launch-setup.md §C1). Amended 2026-06-22 for the Taffy+ subscription
+// (legal-docs-iap-amendment): §6 now covers IAP pricing, auto-renewal, Apple
+// billing/refunds, and downgrade behavior — see docs/plans/2026-06-13-payments.md §3.
 export default function Terms() {
   return (
-    <LegalLayout title="Terms of Service" updated="June 18, 2026">
+    <LegalLayout title="Terms of Service" updated="June 22, 2026">
       <p className="lead">
         These Terms of Service (&ldquo;Terms&rdquo;) are an agreement between you
         and <strong>Terris Zhu</strong> (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or
@@ -78,13 +78,70 @@ export default function Terms() {
         </li>
       </ul>
 
-      <h2>6. Fees</h2>
+      <h2>6. Fees and subscriptions (Taffy+)</h2>
       <p>
-        Taffy is currently free to use and contains no in-app purchases. We may
-        introduce paid features or subscriptions in the future; if we do, we will
-        update these Terms and make the pricing and billing terms clear before
-        you are charged.
+        Taffy is <strong>free to use with one connected bank</strong>, and every
+        feature is included at no cost. Connecting more than one bank requires{" "}
+        <strong>Taffy+</strong>, an optional auto-renewing subscription.
       </p>
+      <ul>
+        <li>
+          <strong>Pricing.</strong> Taffy+ is offered as a monthly plan
+          (CA$6.99/month) or an annual plan (CA$39.99/year). Prices are shown in
+          the app before you purchase and may vary by region; the price confirmed
+          at checkout is the price that applies.
+        </li>
+        <li>
+          <strong>Free trial.</strong> Taffy+ may be offered with a free trial.
+          If you do not cancel before the trial ends, it automatically converts
+          to a paid subscription and your payment method is charged.
+        </li>
+        <li>
+          <strong>Auto-renewal.</strong> Your subscription renews automatically
+          for the same period at the then-current price unless you cancel at
+          least 24 hours before the end of the current period. Your Apple App
+          Store account is charged for renewal within 24 hours before the period
+          ends.
+        </li>
+        <li>
+          <strong>Billing.</strong> Taffy+ is sold as an in-app purchase
+          processed by <strong>Apple</strong>; payment is charged to your Apple
+          App Store account. We use <strong>RevenueCat</strong> to manage and
+          validate subscription entitlements. We never receive or store your
+          payment-card details.
+        </li>
+        <li>
+          <strong>Managing and cancelling.</strong> You can manage or cancel
+          your subscription at any time in your device&rsquo;s{" "}
+          <strong>Settings → [your name] → Subscriptions</strong>. Cancellation
+          takes effect at the end of the current billing period.
+        </li>
+        <li>
+          <strong>Refunds.</strong> Purchases are handled by Apple, and refunds
+          are subject to Apple&rsquo;s policies — request one through Apple at{" "}
+          <a
+            href="https://reportaproblem.apple.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            reportaproblem.apple.com
+          </a>
+          . We do not separately process payments or issue refunds.
+        </li>
+        <li>
+          <strong>If Taffy+ ends.</strong> If your subscription lapses or is
+          cancelled while you have more than one bank connected, Taffy keeps one
+          bank active and pauses the others; the paused banks&rsquo; data is
+          hidden until you resubscribe or disconnect them. You do not lose the
+          categories or rules you created.
+        </li>
+        <li>
+          <strong>Price changes.</strong> We may change subscription prices. If a
+          change affects your renewal, you will be notified in advance as
+          required, and any increase will not take effect until your next
+          renewal.
+        </li>
+      </ul>
 
       <h2>7. Intellectual property</h2>
       <p>

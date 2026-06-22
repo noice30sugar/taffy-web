@@ -7,10 +7,11 @@ export const metadata: Metadata = {
 
 // Privacy Policy. Drafted from the codebase-verified data-practices spec in the
 // Transorter repo (docs/launch-setup.md §C1), structured after a Termly export.
-// Owned by the "Real legal + App Store URLs" roadmap task.
+// Amended 2026-06-22 for the Taffy+ subscription (legal-docs-iap-amendment):
+// added subscription/purchase data + RevenueCat sub-processor + Apple IAP.
 export default function Privacy() {
   return (
-    <LegalLayout title="Privacy Policy" updated="June 21, 2026">
+    <LegalLayout title="Privacy Policy" updated="June 22, 2026">
       <p className="lead">
         This Privacy Policy describes how <strong>Terris Zhu</strong> (&ldquo;we,&rdquo;
         &ldquo;us,&rdquo; or &ldquo;our&rdquo;) accesses, collects, stores, uses,
@@ -82,6 +83,19 @@ export default function Privacy() {
         </li>
       </ul>
 
+      <h3>Subscription information</h3>
+      <p>
+        If you purchase <strong>Taffy+</strong>, our optional subscription, we
+        receive your subscription status and related purchase details — such as
+        whether you are on a trial, active, or expired plan, the product you
+        purchased, and Apple transaction identifiers — from Apple and our
+        subscription provider, RevenueCat.{" "}
+        <strong>
+          We never receive your full payment-card or bank-card details
+        </strong>{" "}
+        — payment is processed by Apple.
+      </p>
+
       <h2>2. How we use your information</h2>
       <p>We use your information to:</p>
       <ul>
@@ -95,6 +109,10 @@ export default function Privacy() {
           changes to our terms;
         </li>
         <li>Respond to your inquiries and provide support;</li>
+        <li>
+          Manage your Taffy+ subscription — including trials, renewals, and
+          access to paid features;
+        </li>
         <li>Request feedback;</li>
         <li>Protect the Services, including fraud monitoring and prevention;</li>
         <li>Evaluate and improve the Services and your experience; and</li>
@@ -150,13 +168,26 @@ export default function Privacy() {
         </li>
         <li>
           <strong>Apple</strong> — provides Sign in with Apple, push
-          notifications (APNs), and App Store distribution. See{" "}
+          notifications (APNs), App Store distribution, and processes in-app
+          purchases (Taffy+ payments). See{" "}
           <a
             href="https://www.apple.com/legal/privacy/"
             target="_blank"
             rel="noopener noreferrer"
           >
             apple.com/legal/privacy
+          </a>
+          .
+        </li>
+        <li>
+          <strong>RevenueCat, Inc.</strong> — manages and validates Taffy+
+          subscription purchases and entitlements. See{" "}
+          <a
+            href="https://www.revenuecat.com/privacy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            revenuecat.com/privacy
           </a>
           .
         </li>
