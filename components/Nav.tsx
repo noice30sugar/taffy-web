@@ -33,7 +33,9 @@ export default function Nav() {
           />
         </a>
         <a
-          href="#download"
+          href="https://apps.apple.com/app/id6781802776"
+          target="_blank"
+          rel="noopener"
           className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink transition hover:brightness-105 active:scale-[0.98]"
         >
           Get the app

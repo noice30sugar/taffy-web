@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import WaitlistForm from "./WaitlistForm";
 import AppStoreBadge from "./AppStoreBadge";
 import Card from "./ui/Card";
 
@@ -28,16 +27,13 @@ export default function FinalCta() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Be first in line.
+              Get Taffy.
             </h2>
             <p className="mt-4 max-w-[30rem] text-lg leading-relaxed text-fg-dim">
-              Taffy lands on the App Store soon. Join the waitlist and we&rsquo;ll
-              tell you the moment it&rsquo;s live.
+              Taffy&rsquo;s on the App Store &mdash; free to download. Connect your
+              bank and sort your first deck in under a minute.
             </p>
             <div className="mt-[30px] flex w-full justify-center">
-              <WaitlistForm source="footer-cta" />
-            </div>
-            <div className="mt-5">
               <AppStoreBadge />
             </div>
           </div>

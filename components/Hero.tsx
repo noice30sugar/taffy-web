@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="hero-copy">
           <span className="hero-eyebrow">
             <span className="dot" />
-            Coming soon to iOS
+            Now on the App Store
           </span>
 
           <h1 className="hero-h1">
@@ -35,8 +35,13 @@ export default function Hero() {
           </p>
 
           <div className="hero-ctas">
-            <a href="#download" className="hero-cta">
-              Join the waitlist <span className="ic">→</span>
+            <a
+              href="https://apps.apple.com/app/id6781802776"
+              target="_blank"
+              rel="noopener"
+              className="hero-cta"
+            >
+              Download on the App Store <span className="ic">→</span>
             </a>
             <a href="#how" className="hero-ghost">
               See how it works
@@ -44,7 +49,7 @@ export default function Hero() {
           </div>
 
           <p className="hero-fine">
-            Early access · Connect any Canadian or US bank securely via Plaid
+            Free on iPhone · Connect any Canadian or US bank securely via Plaid
           </p>
         </div>
 
