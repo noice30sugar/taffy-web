@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Schibsted_Grotesk, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/structured-data";
 
 // Brand typography (Gold v3 redesign): editorial serif headings (Newsreader) +
 // Schibsted Grotesk body. Plus Jakarta Sans + DM Sans are retained for the
@@ -31,13 +32,14 @@ const dmSans = DM_Sans({
   weight: ["400", "500"],
 });
 
-const SITE_URL = "https://taffybuckets.com";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Taffy — Bucket your spending.",
   description:
     "Spending awareness without the homework. Connect your bank, tap each transaction into a bucket, and see where your money went. No budget required.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Taffy — Bucket your spending.",
     description:
