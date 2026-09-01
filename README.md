@@ -58,4 +58,4 @@ the service-role key (never exposed here).
 - `public/screens/` — raw app frames (iPhone 17 Pro, 1206×2622). Device-frame /
   mockup treatment is a Phase B design decision.
 - Favicon, apple-touch-icon, and OG image are Phase B (design-dependent;
-  formally owned by the `marketing-site-assets` roadmap task).
+  formally owned by the `marketing-site-assets` task).

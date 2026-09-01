@@ -86,4 +86,4 @@ All verified in-browser (Playwright screenshots + geometry/brightness/state meas
 
 ## Working agreement
 - All visual changes verified in-browser (Playwright screenshot) before presenting.
-- `taffy-web` is NOT the protocol project — no `/proj-log`. Commit/push only with explicit user approval.
+- Commit and push when the work is done; no need to ask first.
