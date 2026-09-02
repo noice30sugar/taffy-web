@@ -25,9 +25,7 @@ export default async function OpengraphImage() {
           justifyContent: "center",
           background: "#101014",
         }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={wordmark} width={560} height={222} alt="Taffy" />
+      >        <img src={wordmark} width={560} height={222} alt="Taffy" />
       </div>
     ),
     { ...size },

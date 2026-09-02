@@ -39,7 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-!.env.example
 
 # design-sync (claude.ai/design) — staged scripts, build output, machine state
 .ds-sync/

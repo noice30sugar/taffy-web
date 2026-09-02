@@ -98,7 +98,7 @@ export default function KitPage() {
             </Card>
             <Card cornerAccent>
               <p className="font-semibold text-fg">Corner accent</p>
-              <p className="mt-1 text-sm text-fg-dim">The app's signature bracketed corners.</p>
+              <p className="mt-1 text-sm text-fg-dim">The app&rsquo;s signature bracketed corners.</p>
             </Card>
             <Card surface="elevated">
               <p className="font-semibold text-fg">Elevated</p>

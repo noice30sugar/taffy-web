@@ -32,7 +32,8 @@ export default function Footer() {
             </a>
           </div>
           <p className="text-fg-faint">
-            © {new Date().getFullYear()} Taffy · 🇨🇦🇺🇸 Built for Canadian &amp; US banks
+            © {new Date().getFullYear()}{" "}
+            Taffy · 🇨🇦🇺🇸 Built for Canadian &amp; US banks
           </p>
         </nav>
       </div>

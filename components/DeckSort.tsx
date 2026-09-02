@@ -1,5 +1,11 @@
 "use client";
 
+// This component IS an animation timeline: each effect seeds a phase and then
+// advances it on timers. Setting state in the effect body is the mechanism, not
+// an accident -- the phases are pixel-tuned against the iOS choreography (see
+// docs/design-notes.md) and restructuring them has broken the deck before.
+/* eslint-disable react-hooks/set-state-in-effect */
+
 import { useEffect, useState, type ReactNode } from "react";
 
 /*
